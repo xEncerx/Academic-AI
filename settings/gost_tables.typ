@@ -1,6 +1,12 @@
+#let gost-chapter-num-state = state("gost-chapter-numbering", false)
+
 #let gost-tables(chapter-numbering: false, body) = {
+  gost-chapter-num-state.update(chapter-numbering)
   // Устанавливаем префикс по умолчанию
   set figure(supplement: "Таблица")
+
+  // Разрешаем фигурам-таблицам переноситься между страницами
+  show figure.where(kind: table): set block(breakable: true)
 
   // Сброс счетчика таблиц при начале новой главы (заголовок 1 уровня)
   show heading.where(level: 1): it => {
@@ -68,6 +74,7 @@
     // Размещаем подпись НАД таблицей, а затем саму таблицу
     block(
       width: 100%,
+      breakable: true, // Разрешаем перенос таблицы
       below: 6mm, // Отступ после таблицы (6 мм)
       {
         caption-text
@@ -97,22 +104,58 @@
     caption: caption,
     kind: table,
     supplement: "Таблица",
-    table(
-      columns: columns,
-      // Заголовок таблицы (шапка), который будет повторяться на новых страницах
-      table.header(
-        repeat: true,
-        ..{
-          let h = if type(header) == arguments { header.pos() } else if type(header) == array { header } else {
-            (header,)
-          }
-          h.map(item => table.cell(
-            align: center,
-            text(weight: "bold", item), // Жирный текст по центру для заголовков столбцов
-          ))
-        },
-      ),
-      ..cells
-    ),
+    [
+      #metadata("tbl-start") <gost-tbl-start>
+      #table(
+        columns: columns,
+        // Заголовок таблицы (шапка), который будет повторяться на новых страницах
+        table.header(
+          repeat: true,
+          table.cell(
+            colspan: if type(columns) == array { columns.len() } else { 1 },
+            stroke: none,
+            inset: 0pt, // Чтобы пустая строка на первой странице не занимала места
+            context {
+              let caps = query(selector(<gost-tbl-start>).before(here(), inclusive: true))
+              if caps.len() > 0 {
+                let start-page = caps.last().location().page()
+                if here().page() > start-page {
+                  let h-num = counter(heading).get().first()
+                  let t-num = counter(figure.where(kind: table)).get().first()
+                  let app-letter = state("gost-app-letter", none).get()
+                  let is-chap = gost-chapter-num-state.get()
+
+                  let num-str = if app-letter != none {
+                    app-letter + "." + str(t-num)
+                  } else if is-chap and h-num > 0 {
+                    str(h-num) + "." + str(t-num)
+                  } else {
+                    str(t-num)
+                  }
+
+                  pad(bottom: 1mm, align(left, text(
+                    font: "Times New Roman",
+                    size: 12pt,
+                    style: "italic",
+                    weight: "regular",
+                    "Продолжение Таблицы " + num-str,
+                  )))
+                }
+              }
+            },
+          ),
+          ..{
+            let h = if type(header) == arguments { header.pos() } else if type(header) == array { header } else {
+              (header,)
+            }
+            h.map(item => table.cell(
+              align: center,
+              text(weight: "bold", item), // Жирный текст по центру для заголовков столбцов
+            ))
+          },
+        ),
+        ..cells
+      )
+    ],
   )
 }
