@@ -25,6 +25,9 @@
 // 3. Оглавление (СОДЕРЖАНИЕ)
 #include "chapters/01_toc.typ"
 
+// Метка начала нумерации страниц (после оглавления)
+#metadata("start-numbering") <start-numbering>
+
 // 4. ОСНОВНОЙ ТЕКСТ (Введение, Разделы, Заключение)
 #include "chapters/02_main_text.typ"
 

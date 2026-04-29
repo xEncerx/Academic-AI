@@ -3,14 +3,24 @@
   set page(
     paper: "a4",
     margin: (left: 30mm, right: 10mm, top: 20mm, bottom: 20mm),
-    footer: context {
-      // Нумерация страниц: по центру внизу, арабскими цифрами
-      // На первых 5 страницах (титульный, задание, содержание) номер не ставится
-      let page-num = counter(page).get().first()
-      if page-num > 2 {
-        align(center, text(font: "Times New Roman", size: 12pt, weight: "regular", str(page-num)))
-      }
-    },
+  footer: context {
+    // Нумерация страниц: по центру внизу, арабскими цифрами
+    // Номерация начинается со страницы, следующей за меткой <start-numbering>
+    let page-num = counter(page).get().first()
+    
+    // Ищем метку начала нумерации
+    let start-label = query(<start-numbering>).first()
+    let start-page = if start-label != none {
+      start-label.location().page()
+    } else {
+      3 // fallback: если метка не найдена, начинаем с 3-й страницы
+    }
+    
+    // Показываем номер только на страницах после метки
+    if page-num > start-page {
+      align(center, text(font: "Times New Roman", size: 12pt, weight: "regular", str(page-num)))
+    }
+  },
   )
 
   // Основной текст
