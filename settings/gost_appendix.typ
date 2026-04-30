@@ -15,12 +15,14 @@
 
   for app in apps.pos() {
     let (letter, title) = app
-    [Приложение #letter #title \ ]
+    link(label("appendix-" + upper(letter)))[Приложение #letter #title \ ]
   }
 }
 
 #let gost-appendix(letter, title, body) = {
   pagebreak(weak: true)
+
+  [#metadata((letter: letter, title: title)) #label("appendix-" + upper(letter))]
 
   // Устанавливаем глобальное состояние, чтобы рисунки/таблицы/формулы знали, что они в приложении
   state("gost-app-letter", none).update(letter)
