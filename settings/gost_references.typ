@@ -1,4 +1,10 @@
+#let _bib-sec = counter("gost-bib-section")
+#let _bib-item = counter("gost-bib-item")
+
 #let gost-bibliography-title() = {
+  _bib-sec.update(0)
+  _bib-item.update(0)
+
   pagebreak(weak: true)
 
   // Главный заголовок "СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ"
@@ -12,12 +18,15 @@
         // Убираем красную строку, чтобы заголовок был ровно по центру
         set par(first-line-indent: 0cm)
         text(font: "Times New Roman", size: 18pt, weight: "bold")[СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ]
-      }
+      },
     )
   ]
 }
 
-#let gost-bib-section(num, title) = {
+#let gost-bib-section(title) = {
+  _bib-sec.step()
+  _bib-item.update(0)
+
   // Заголовок раздела внутри списка литературы
   // 14пт, обычный шрифт (не полужирный), все прописные, по центру, отступ слева 1.25 см
   // Интервал перед 6 мм, после 6 мм, не отрывать от следующего (sticky: true)
@@ -28,30 +37,42 @@
       sticky: true,
       {
         set par(first-line-indent: 0cm)
-        pad(
+        // context нужен, чтобы прочитать текущее значение счётчика
+        context pad(
           left: 1.25cm,
-          text(font: "Times New Roman", size: 14pt, weight: "regular", upper(str(num) + ". " + title))
+          text(
+            font: "Times New Roman",
+            size: 14pt,
+            weight: "regular",
+            upper(str(_bib-sec.get().first()) + ". " + title),
+          ),
         )
-      }
+      },
     )
   ]
 }
 
-#let gost-bib-item(num, body) = {
+#let gost-bib-item(body) = {
+  _bib-item.step()
+
   // Выравнивание по ширине, отступ слева 0, все строки текста после первой сдвинуты (hanging indent)
   // Реализуем через сетку: первая колонка 1.25 см для номера, вторая для текста
   set par(first-line-indent: 0cm, leading: 1.5em, justify: true)
-  
+
   // Добавляем отступ над блоком, чтобы между источниками сохранялся полуторный интервал
   block(
     width: 100%,
     above: 1.5em,
     below: 0mm,
-    grid(
-      columns: (1.25cm, 1fr),
-      align: (left, left),
-      text(font: "Times New Roman", size: 14pt, weight: "regular", num),
-      text(font: "Times New Roman", size: 14pt, weight: "regular", body)
-    )
+    context {
+      let sec = _bib-sec.get().first()
+      let item = _bib-item.get().first()
+      grid(
+        columns: (1.25cm, 1fr),
+        align: (left, left),
+        text(font: "Times New Roman", size: 14pt, weight: "regular", str(sec) + "." + str(item) + "."),
+        text(font: "Times New Roman", size: 14pt, weight: "regular", body),
+      )
+    },
   )
 }
