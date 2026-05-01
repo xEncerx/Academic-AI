@@ -3,24 +3,24 @@
   set page(
     paper: "a4",
     margin: (left: 30mm, right: 10mm, top: 20mm, bottom: 20mm),
-  footer: context {
-    // Нумерация страниц: по центру внизу, арабскими цифрами
-    // Номерация начинается со страницы, следующей за меткой <start-numbering>
-    let page-num = counter(page).get().first()
-    
-    // Ищем метку начала нумерации
-    let start-label = query(<start-numbering>).first()
-    let start-page = if start-label != none {
-      start-label.location().page()
-    } else {
-      3 // fallback: если метка не найдена, начинаем с 3-й страницы
-    }
-    
-    // Показываем номер только на страницах после метки
-    if page-num > start-page {
-      align(center, text(font: "Times New Roman", size: 12pt, weight: "regular", str(page-num)))
-    }
-  },
+    footer: context {
+      // Нумерация страниц: по центру внизу, арабскими цифрами
+      // Номерация начинается со страницы, следующей за меткой <start-numbering>
+      let page-num = counter(page).get().first()
+
+      // Ищем метку начала нумерации
+      let start-label = query(<start-numbering>).first()
+      let start-page = if start-label != none {
+        start-label.location().page()
+      } else {
+        3 // fallback: если метка не найдена, начинаем с 3-й страницы
+      }
+
+      // Показываем номер только на страницах после метки
+      if page-num > start-page {
+        align(center, text(font: "Times New Roman", size: 12pt, weight: "regular", str(page-num)))
+      }
+    },
   )
 
   // Основной текст
@@ -50,38 +50,46 @@
   })
 
   show heading: it => {
-    // Формирование номера (если он включен)
+    // Получаем номер
     let number = if it.numbering != none {
       counter(heading).display(it.numbering)
-      " " // Пробел после номера
     } else {
-      ""
+      none
     }
 
     let body-text = it.body
-    let result = none
-
-    if it.level == 1 {
-      // Заголовок 1 уровня: 18пт, все прописные
-      result = text(size: 18pt, weight: "bold", upper(number) + upper(body-text))
-    } else if it.level == 2 {
-      // Заголовок 2 уровня: 16пт
-      result = text(size: 16pt, weight: "bold", number + body-text)
-    } else {
-      // Заголовок 3+ уровня: 14пт
-      result = text(size: 14pt, weight: "bold", number + body-text)
-    }
-
     let above-space = if it.level == 1 { 0mm } else { 15mm }
 
+    // Если это заголовок первого уровня, добавляем разрыв страницы перед ним
     if it.level == 1 {
       pagebreak(weak: true)
     }
 
-    // Блок заголовка: запрет висящих строк, не отрывать от следующего
+    // Определяем размер текста для каждого уровня
+    let h-size = if it.level == 1 { 18pt } else if it.level == 2 { 16pt } else { 14pt }
+
+    let style-text(content) = {
+      let res = text(size: h-size, weight: "bold", content)
+      if it.level == 1 {
+        res = upper(res) // Все прописные для 1 уровня
+      }
+      return res
+    }
+
+    // Создаем сетку, если есть номер, иначе выводим просто текст
+    let result = if number != none {
+      grid(
+        columns: (auto, 1fr),
+        column-gutter: 0.5em,
+        style-text(number), style-text(body-text),
+      )
+    } else {
+      style-text(body-text)
+    }
+
     block(
       above: above-space,
-      below: 10mm,
+      below: 10mm, // Интервал после заголовков 10 мм
       sticky: true,
       pad(left: 1.25cm, result),
     )
