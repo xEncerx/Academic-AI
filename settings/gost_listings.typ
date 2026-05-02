@@ -8,8 +8,9 @@
   // Сохраняем параметр chapter-numbering в состояние
   gost-listing-chapter-num-state.update(chapter-numbering)
 
-  set figure(supplement: "Листинг")
-
+  // Устанавливаем префикс для листингов
+  show figure.where(kind: "listing"): set figure(supplement: "Листинг")
+  // Разрешаем фигурам-листингам переноситься между страницами
   show figure.where(kind: "listing"): set block(breakable: true)
 
   show heading.where(level: 1): it => {

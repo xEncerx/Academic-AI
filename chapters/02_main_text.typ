@@ -3,8 +3,6 @@
 #import "../settings/gost_listings.typ": gost-listing
 #import "../settings/gost_figures.typ": gost-figures
 
-#show: gost-figures.with(chapter-numbering: true)
-
 #heading(level: 1, numbering: none)[ВВЕДЕНИЕ]
 
 В данном демонстрационном файле представлены все основные элементы оформления текста согласно методическим указаниям. Текст абзацев выравнивается по ширине, имеет автоматически настроенный абзацный отступ (красную строку) и полуторный интервал.

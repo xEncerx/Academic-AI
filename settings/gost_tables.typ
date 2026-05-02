@@ -2,9 +2,9 @@
 
 #let gost-tables(chapter-numbering: false, body) = {
   gost-chapter-num-state.update(chapter-numbering)
-  // Устанавливаем префикс по умолчанию
-  set figure(supplement: "Таблица")
 
+  // Устанавливаем префикс для таблиц
+  show figure.where(kind: table): set figure(supplement: "Таблица")
   // Разрешаем фигурам-таблицам переноситься между страницами
   show figure.where(kind: table): set block(breakable: true)
 
