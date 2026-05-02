@@ -20,13 +20,13 @@
     [Размер], [14pt]
   ) <tab-app>
 
-  Как видно из @tab-app, требования строгие.
+  Как видно из #ref(<tab-app>, supplement: "Таблицы"), требования строгие.
 ]
 
 // Приложение Б (Альбомная ориентация)
 #set page(flipped: true)
 #gost-appendix("Б", "Листинги кода")[
-  Код программы представлен в @list-app-b.
+  Код программы представлен в #ref(<list-app-b>, supplement: "Листинге").
 
   #gost-listing(
     code: "print('Hello, Appendix B!')",
