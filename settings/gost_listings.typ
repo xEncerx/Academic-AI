@@ -63,7 +63,6 @@
 
       block(
         width: 100%,
-        above: 6mm,
         below: 1mm,
         sticky: true,
         align(left)[#it.supplement #num-str --- #it.caption.body],
@@ -75,7 +74,8 @@
     block(
       width: 100%,
       breakable: true,
-      below: 6mm,
+      above: 8mm, // Отступ перед подписью до основного текста (6мм)
+      below: 8mm,// Отступ после листинга (6 мм)
       {
         caption-text
         it.body

@@ -2,7 +2,7 @@
   // Страницы
   set page(
     paper: "a4",
-    margin: (left: 30mm, right: 10mm, top: 20mm, bottom: 20mm),
+    margin: (left: 30mm, right: 10mm, top: 21.8mm, bottom: 20mm),
     footer: context {
       // Нумерация страниц: по центру внизу, арабскими цифрами
       // Номерация начинается со страницы, следующей за меткой <start-numbering>
@@ -35,8 +35,8 @@
   set par(
     justify: true,
     first-line-indent: (amount: 1.25cm, all: true),
-    leading: 1.5em, // полуторный интервал
-    spacing: 1.5em, // интервал между абзацами
+    leading: 1.14em, // полуторный интервал
+    spacing: 1.14em, // интервал между абзацами
   )
 
   // Заголовки
@@ -58,7 +58,7 @@
     }
 
     let body-text = it.body
-    let above-space = if it.level == 1 { 0mm } else { 15mm }
+    let above-space = if it.level == 1 { 0mm } else { 21mm }
 
     // Если это заголовок первого уровня, добавляем разрыв страницы перед ним
     if it.level == 1 {
@@ -89,7 +89,7 @@
 
     block(
       above: above-space,
-      below: 10mm, // Интервал после заголовков 10 мм
+      below: 16mm, // Интервал после заголовков 10 мм
       sticky: true,
       pad(left: 1.25cm, result),
     )
@@ -98,13 +98,13 @@
   // 3. Маркированные и нумерованные списки
   set list(
     indent: 1.25cm,
-    body-indent: 1cm, // Отступ маркера 1.25, текст начинается на 2.25 (1.25 + 1)
+    body-indent: 0.8cm, // Отступ маркера 1.25, текст начинается на 2.25
     marker: "●",
   )
 
   set enum(
     indent: 1.25cm,
-    body-indent: 1cm,
+    body-indent: 0.8cm,
     numbering: "1", // Без точки в конце
   )
 
