@@ -59,7 +59,7 @@ description: Use when formatting academic papers, thesis, or reports in Typst us
 
 ```typst
 #figure(
-  image("assets/images/schema.png", width: 80%),
+  image("/assets/images/schema.png", width: 80%),
   caption: [Схема работы]
 ) <img-schema>
 ```
@@ -69,7 +69,7 @@ description: Use when formatting academic papers, thesis, or reports in Typst us
 ```typst
 #page(flipped: true)[
   #figure(
-    image("assets/images/wide_chart.jpg", width: 100%),
+    image("/assets/images/wide_chart.jpg", width: 100%),
     caption: [Широкий график]
   ) <img-wide>
 ]
@@ -125,7 +125,7 @@ $ <eq-trud>
 #import "../settings/gost_listings.typ": gost-listing
 
 #gost-listing(
-  file: "assets/codes/script.py",
+  file: "/assets/codes/script.py",
   caption: [Алгоритм обработки],
   lang: "python",
   numbers: true
