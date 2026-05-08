@@ -132,6 +132,29 @@ Academic-AI/
    typst compile main.typ main.pdf
    ```
 
+## 🔄 Обновление шаблона
+
+> Обновляются только файлы шаблона (`settings/`, `main.typ`, `.agents/` и т.д.).
+> Ваши файлы в `chapters/` и `assets/` **не затрагиваются**.
+
+<details>
+<summary>🐧 Linux / 🍎 macOS</summary>
+
+```bash
+chmod +x update.sh && ./update.sh
+```
+
+</details>
+
+<details>
+<summary>🪟 Windows</summary>
+
+```powershell
+.\update.ps1
+```
+
+</details>
+
 ## 📄 Лицензия
 
 Свободное использование и распространение. Делайте, что хотите ❤️
