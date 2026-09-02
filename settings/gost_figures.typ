@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let gost-figures(chapter-numbering: false, body) = {
   // Устанавливаем префикс по умолчанию
   set figure(supplement: "Рисунок")
@@ -33,7 +35,7 @@
     set align(center)
 
     let caption-text = if it.caption != none {
-      set text(font: "Times New Roman", size: 12pt, weight: "bold")
+      set text(font: gost-serif, size: 12pt, weight: "bold")
       // Одинарный межстрочный интервал (0.65em) и выравнивание по центру, убираем абзацный отступ
       set par(first-line-indent: 0cm, leading: 0.65em, justify: false)
 

@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let _bib-sec = counter("gost-bib-section")
 #let _bib-item = counter("gost-bib-item")
 
@@ -17,7 +19,7 @@
       {
         // Убираем красную строку, чтобы заголовок был ровно по центру
         set par(first-line-indent: 0cm)
-        text(font: "Times New Roman", size: 18pt, weight: "bold")[СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ]
+        text(font: gost-serif, size: 18pt, weight: "bold")[СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ]
       },
     )
   ]
@@ -43,7 +45,7 @@
         context pad(
           left: 1.25cm,
           text(
-            font: "Times New Roman",
+            font: gost-serif,
             size: 14pt,
             weight: "regular",
             upper(str(_bib-sec.get().first()) + ". " + title),
@@ -74,8 +76,8 @@
       grid(
         columns: (1.25cm, 1fr),
         align: (left, left),
-        text(font: "Times New Roman", size: 14pt, weight: "regular", str(sec) + "." + str(item) + "."),
-        text(font: "Times New Roman", size: 14pt, weight: "regular", body),
+        text(font: gost-serif, size: 14pt, weight: "regular", str(sec) + "." + str(item) + "."),
+        text(font: gost-serif, size: 14pt, weight: "regular", body),
       )
     },
   )

@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let gost-chapter-num-state = state("gost-chapter-numbering", false)
 
 #let gost-tables(chapter-numbering: false, body) = {
@@ -42,7 +44,7 @@
     set align(left)
 
     let caption-text = if it.caption != none {
-      set text(font: "Times New Roman", size: 12pt, weight: "regular", style: "italic")
+      set text(font: gost-serif, size: 12pt, weight: "regular", style: "italic")
       // Одинарный межстрочный интервал и выравнивание по левому краю, убираем абзацный отступ
       set par(first-line-indent: 0cm, leading: 0.65em, justify: false)
 
@@ -85,7 +87,7 @@
 
   // Оформление содержимого внутри всех таблиц
   show table.cell: it => {
-    set text(font: "Times New Roman", size: 12pt)
+    set text(font: gost-serif, size: 12pt)
     set par(first-line-indent: 0cm, leading: 0.65em, justify: false)
     it
   }
@@ -134,7 +136,7 @@
                   }
 
                   pad(bottom: 1mm, align(left, text(
-                    font: "Times New Roman",
+                    font: gost-serif,
                     size: 12pt,
                     style: "italic",
                     weight: "regular",

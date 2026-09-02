@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let gost-title(path: "/assets/title_page.pdf") = {
   // Создаем отдельную страницу без полей, колонтитулов и нумерации для титульного листа
   page(
@@ -18,14 +20,14 @@
       above: 0mm,
       below: 16mm,
       sticky: true,
-      text(font: "Times New Roman", size: 18pt, weight: "bold")[СОДЕРЖАНИЕ],
+      text(font: gost-serif, size: 18pt, weight: "bold")[СОДЕРЖАНИЕ],
     )
   ]
 
   // Настройка отображения строк содержания
   show outline.entry: it => {
     // Стиль основного текста для содержания
-    set text(font: "Times New Roman", size: 14pt, weight: "regular")
+    set text(font: gost-serif, size: 14pt, weight: "regular")
     // Убираем красную строку (абзацный отступ) для элементов содержания и ставим полуторный интервал
     set par(first-line-indent: 0cm, leading: 1.5em)
 

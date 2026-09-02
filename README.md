@@ -95,12 +95,14 @@ Academic-AI/
 │   └── 04_appendix.typ        # Приложения
 ├── settings/
 │   ├── gost_core.typ          # Основные настройки ГОСТ
+│   ├── gost_fonts.typ         # Основные и резервные гарнитуры
 │   ├── gost_tables.typ        # Макросы для таблиц
 │   ├── gost_figures.typ       # Макросы для рисунков
 │   ├── gost_math.typ          # Макросы для формул
 │   ├── gost_listings.typ      # Макросы для листингов кода
 │   ├── gost_references.typ    # Макросы для списка литературы
-│   └── gost_appendix.typ      # Макросы для приложений
+│   ├── gost_appendix.typ      # Макросы для приложений
+│   └── fonts/                 # Встроенные резервные шрифты Liberation
 ├── assets/
 │   ├── title_page.pdf         # Титульный лист
 │   ├── images/                # Изображения для работы
@@ -129,8 +131,17 @@ Academic-AI/
 
 5. **Скомпилируйте PDF:**
    ```bash
-   typst compile main.typ main.pdf
+   typst compile --font-path settings/fonts main.typ main.pdf
    ```
+
+## 🔤 Шрифты
+
+Шаблон использует системные Times New Roman и Courier New, если они доступны. Если этих гарнитур нет, Typst автоматически применяет встроенные аналоги:
+
+- Liberation Serif вместо Times New Roman;
+- Liberation Mono вместо Courier New.
+
+Файлы шрифтов находятся в `settings/fonts/` и распространяются по лицензии SIL Open Font License 1.1. Конфигурация `.vscode/settings.json` автоматически подключает их для предпросмотра и экспорта через Tinymist. При сборке из терминала передавайте `--font-path settings/fonts`, как показано выше.
 
 ## 🔄 Обновление шаблона
 

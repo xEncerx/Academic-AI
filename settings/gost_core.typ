@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let gost-core(body) = {
   // Страницы
   set page(
@@ -18,14 +20,14 @@
 
       // Показываем номер только на страницах после метки
       if page-num > start-page {
-        align(center, text(font: "Times New Roman", size: 12pt, weight: "regular", str(page-num)))
+        align(center, text(font: gost-serif, size: 12pt, weight: "regular", str(page-num)))
       }
     },
   )
 
   // Основной текст
   set text(
-    font: "Times New Roman",
+    font: gost-serif,
     size: 14pt,
     weight: "regular",
     lang: "ru",

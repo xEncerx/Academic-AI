@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif, gost-mono
+
 #let gost-listing-chapter-num-state = state("gost-listing-chapter-numbering", false)
 
 #let _gost-in-listing = state("gost-in-listing", false)
@@ -46,7 +48,7 @@
     set align(left)
 
     let caption-text = if it.caption != none {
-      set text(font: "Times New Roman", size: 12pt, weight: "regular", style: "italic")
+      set text(font: gost-serif, size: 12pt, weight: "regular", style: "italic")
       set par(first-line-indent: 0cm, leading: 0.65em, justify: false)
 
       let h-num = counter(heading).get().first()
@@ -86,7 +88,7 @@
   // Оформление raw-блоков:
   // Если мы внутри gost-listing — рамку НЕ добавляем (таблица уже её даёт), только применяем шрифт. Иначе — стандартное оформление по ГОСТу.
   show raw.where(block: true): it => context {
-    set text(font: "Courier New", size: 10pt)
+    set text(font: gost-mono, size: 10pt)
     set par(first-line-indent: 0cm, leading: 0.65em, justify: false)
 
     if _gost-in-listing.get() {
@@ -180,7 +182,7 @@
                   }
 
                   pad(bottom: 1mm, align(left, text(
-                    font: "Times New Roman",
+                    font: gost-serif,
                     size: 12pt,
                     style: "italic",
                     weight: "regular",

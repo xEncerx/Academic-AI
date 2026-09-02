@@ -1,3 +1,5 @@
+#import "gost_fonts.typ": gost-serif
+
 #let gost-appendix-list(..apps) = {
   pagebreak(weak: true)
 
@@ -6,11 +8,11 @@
     above: 0mm,
     below: 10mm,
     sticky: true,
-    align(center, text(font: "Times New Roman", size: 18pt, weight: "bold", upper([Приложения]))),
+    align(center, text(font: gost-serif, size: 18pt, weight: "bold", upper([Приложения]))),
   )
 
   // Форматирование списка приложений (Основной текст)
-  set text(font: "Times New Roman", size: 14pt, weight: "regular")
+  set text(font: gost-serif, size: 14pt, weight: "regular")
   set par(first-line-indent: 1.25cm, leading: 1.5em)
 
   for app in apps.pos() {
@@ -37,8 +39,8 @@
   // Заголовок приложения (по центру, Приложение Х - bold, Название - regular, без отступов)
   align(center)[
     #set par(first-line-indent: 0cm, leading: 1.5em)
-    #text(font: "Times New Roman", size: 14pt, weight: "bold")[Приложение #letter]\
-    #text(font: "Times New Roman", size: 14pt, weight: "regular")[#title]
+    #text(font: gost-serif, size: 14pt, weight: "bold")[Приложение #letter]\
+    #text(font: gost-serif, size: 14pt, weight: "regular")[#title]
   ]
 
   // Содержимое приложения
