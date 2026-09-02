@@ -73,7 +73,7 @@ Tinymist получает тот же каталог из `.vscode/settings.json
 
 // Вставка изображения
 #figure(
-  image("assets/images/photo.jpg", width: 80%),
+  image("/assets/images/photo.jpg", width: 80%),
   caption: [Детали прибора]
 ) <img-details>
 ```
@@ -99,7 +99,7 @@ Tinymist получает тот же каталог из `.vscode/settings.json
 ```typst
 #page(flipped: true)[
   #figure(
-    image("assets/images/wide_chart.jpg", width: 100%),
+    image("/assets/images/wide_chart.jpg", width: 100%),
     caption: [Широкий график]
   ) <img-wide>
 ]
@@ -200,7 +200,7 @@ $ Delta T = T_0 - T_1, $ <eq-trud>
 Функция `#gost-listing()` считывает код из внешнего файла или напрямую из строки, расставляя нумерацию.
 
 **Параметры:**
-- `file`: Путь к исходному файлу (например, `"assets/codes/script.py"`).
+- `file`: Путь к исходному файлу (например, `"/assets/codes/script.py"`).
 - `code`: Строка с кодом (если файл не используется).
 - `caption`: Название блока.
 - `lang`: Язык для подсветки синтаксиса (опционально).
@@ -210,7 +210,7 @@ $ Delta T = T_0 - T_1, $ <eq-trud>
 **Пример вставки из файла:**
 ```typst
 #gost-listing(
-  file: "assets/codes/main.py",
+  file: "/assets/codes/main.py",
   caption: [Скрипт запуска],
   lang: "python",
   numbers: true
@@ -240,11 +240,11 @@ $ Delta T = T_0 - T_1, $ <eq-trud>
 Готовый титульный лист можно подложить первой страницей документа без полей и колонтитулов. Макрос `#gost-title()` вызывается в начале `main.typ`, строго до подключения основного стиля `gost-core`.
 
 ```typst
-// Вставка PDF-файла (по умолчанию берется из "assets/title_page.pdf")
+// Вставка PDF-файла (по умолчанию берется из "/assets/title_page.pdf")
 #gost-title()
 
 // Указание альтернативного пути:
-#gost-title(path: "assets/my_title.pdf")
+#gost-title(path: "/assets/my_title.pdf")
 
 #show: gost-core // Подключение стилей документа
 ```

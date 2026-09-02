@@ -61,11 +61,11 @@ brew install typst
    - `chapters/02_main_text.typ` — основной текст работы
    - `chapters/03_references.typ` — список литературы
    - `chapters/04_appendix.typ` — приложения (если нужны)
-   - Добавьте изображения в `assets/images/`
-   - Добавьте код в `assets/codes/`
+   - Добавьте изображения в `/assets/images/`
+   - Добавьте код в `/assets/codes/`
 
 3. **Замените титульный лист:**
-   - Если у вас есть готовый титульный лист — замените файл `assets/title_page.pdf`
+   - Если у вас есть готовый титульный лист — замените файл `/assets/title_page.pdf`
    - Если титульный лист не нужен — просто удалите файл
 
 ### Вариант 2: С помощью ИИ
@@ -146,7 +146,7 @@ Academic-AI/
 ## 🔄 Обновление шаблона
 
 > Обновляются только файлы шаблона (`settings/`, `main.typ`, `.agents/` и т.д.).
-> Ваши файлы в `chapters/` и `assets/` **не затрагиваются**.
+> Ваши файлы в `chapters/` и `/assets/` **не затрагиваются**.
 
 <details>
 <summary>🐧 Linux / 🍎 macOS</summary>
