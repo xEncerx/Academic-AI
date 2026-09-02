@@ -1,7 +1,7 @@
 #import "../settings/gost_tables.typ": gost-table
 #import "../settings/gost_math.typ": gost-where
 #import "../settings/gost_listings.typ": gost-listing
-#import "../settings/gost_figures.typ": gost-figures
+#import "../settings/gost_figures.typ": gost-image-placeholder
 
 #heading(level: 1, numbering: none)[ВВЕДЕНИЕ]
 
@@ -40,6 +40,19 @@
 ) <img-tutor>
 
 Тестовый текст, чтобы понять отступ между иллюстрацией и текстом.
+
+=== Временное изображение
+
+Если файл изображения еще не подготовлен, вместо него можно использовать нейтральный блок. На #ref(<img-placeholder>, supplement: "Рисунке") показан пример такого блока с сохранением автоматической нумерации и подписи.
+
+#gost-image-placeholder(
+  caption: [Схема взаимодействия компонентов],
+  width: 70%,
+  height: 50mm,
+  note: [Здесь будет схема взаимодействия компонентов],
+) <img-placeholder>
+
+После подготовки изображения вызов временного макроса заменяется на стандартный `figure` с сохранением подписи и метки.
 
 == Вставка таблиц
 

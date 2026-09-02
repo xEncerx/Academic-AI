@@ -18,6 +18,7 @@ description: Use when formatting academic papers, thesis, or reports in Typst us
 | **Главы (с номером)**     | `= НАЗВАНИЕ`                                                            |
 | **Главы (без номера)**    | `#heading(level: 1, numbering: none)[ВВЕДЕНИЕ]`                         |
 | **Рисунки**               | `#figure(image("path"), caption: [Название]) <метка>`                   |
+| **Временные рисунки**     | `#gost-image-placeholder(caption: [Название]) <метка>`                   |
 | **Таблицы (с переносом)** | `#gost-table(columns: (...), caption: [...], header: (...), ...ячейки)` |
 | **Формулы**               | `$ A = B + C $ <метка>`                                                 |
 | **Пояснения к формулам**  | `#gost-where(($Символ$, [Описание]), ...)`                              |
@@ -63,6 +64,21 @@ description: Use when formatting academic papers, thesis, or reports in Typst us
   caption: [Схема работы]
 ) <img-schema>
 ```
+
+Если файл изображения отсутствует или недоступен, используйте временный рисунок. Он сохраняет обычную нумерацию, подпись, метку и перекрестные ссылки:
+
+```typst
+#import "../settings/gost_figures.typ": gost-image-placeholder
+
+#gost-image-placeholder(
+  caption: [Схема работы системы],
+  width: 80%,
+  height: 55mm,
+  note: [Здесь будет схема работы системы],
+) <img-schema>
+```
+
+Параметры `width`, `height` и `note` необязательны. После получения изображения замените весь вызов `gost-image-placeholder` на обычный `figure(image(...))`, сохранив исходные `caption` и метку. Не создавайте фиктивный файл изображения и не удаляйте упоминания рисунка из текста.
 
 Для широких схем (альбомная ориентация) оборачивайте в `#set page(flipped: true)[...]`:
 

@@ -1,5 +1,28 @@
 #import "gost_fonts.typ": gost-serif
 
+// Временная замена отсутствующего изображения с обычной нумерацией рисунков.
+#let gost-image-placeholder(
+  caption: none,
+  width: 70%,
+  height: 60mm,
+  note: [Иллюстрация будет добавлена позднее],
+) = figure(
+  kind: image,
+  caption: caption,
+  rect(
+    width: width,
+    height: height,
+    fill: luma(96%),
+    stroke: 0.5pt + luma(55%),
+    radius: 1mm,
+    inset: 8mm,
+    align(
+      center + horizon,
+      text(font: gost-serif, size: 11pt, fill: luma(40%), note),
+    ),
+  ),
+)
+
 #let gost-figures(chapter-numbering: false, body) = {
   // Устанавливаем префикс по умолчанию
   set figure(supplement: "Рисунок")
