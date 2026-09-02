@@ -13,7 +13,7 @@
 
   // Форматирование списка приложений (Основной текст)
   set text(font: gost-serif, size: 14pt, weight: "regular")
-  set par(first-line-indent: 1.25cm, leading: 1.5em)
+  set par(first-line-indent: 0cm, leading: 1.5em)
 
   for app in apps.pos() {
     let (letter, title) = app
