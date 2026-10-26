@@ -1,13 +1,19 @@
 // ИМПОРТ БАЗОВЫХ СТИЛЕЙ
 #import "settings/gost_core.typ": gost-core
-#import "settings/gost_intro_frame.typ": gost-title
+#import "settings/gost_title.typ": gost-title-page
 #import "settings/gost_figures.typ": gost-figures
 #import "settings/gost_tables.typ": gost-tables
 #import "settings/gost_math.typ": gost-math
 #import "settings/gost_listings.typ": gost-listings
 
-// 1. Вставка титульного листа (если есть готовый PDF)
-#gost-title(path: "/assets/title_page.pdf")
+// 1. Титульный лист с вымышленными данными для демонстрации
+#gost-title-page(
+  title: [ОТЧЁТ ПО ПРАКТИЧЕСКОМУ ЗАНЯТИЮ № ?],
+  discipline: [Создание шаблонов на Typst],
+  group: [НАНО-99-26],
+  student: [Примеров А. Б.],
+  teacher: [Образцова В. Г.],
+)
 
 // 2. Включение глобальных стилей по ГОСТу
 #show: gost-core

@@ -16,7 +16,7 @@ echo "🔄 Обновление с $LOCAL_VERSION → $REMOTE_VERSION"
 
 # Папки шаблона для обновления
 TEMPLATE_DIRS=("settings" ".agents")
-TEMPLATE_FILES=("main.typ" "docs.md" "README.md" "AGENTS.md" ".version")
+TEMPLATE_FILES=("main.typ" "docs.md" "README.md" "AGENTS.md" ".version" "assets/images/mirea-emblem.png")
 
 # Клонируем во временную директорию
 TMP_DIR=$(mktemp -d)
@@ -30,6 +30,7 @@ done
 
 # Обновляем файлы шаблона
 for file in "${TEMPLATE_FILES[@]}"; do
+  mkdir -p "$(dirname "./$file")"
   cp "$TMP_DIR/$file" "./$file"
 done
 

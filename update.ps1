@@ -25,8 +25,10 @@ foreach ($dir in $TemplateDirs) {
 }
 
 # Файлы шаблона
-$TemplateFiles = @("main.typ", "docs.md", "README.md", "AGENTS.md", ".version")
+$TemplateFiles = @("main.typ", "docs.md", "README.md", "AGENTS.md", ".version", "assets/images/mirea-emblem.png")
 foreach ($file in $TemplateFiles) {
+    $ParentDir = Split-Path -Parent ".\$file"
+    New-Item -ItemType Directory -Path $ParentDir -Force | Out-Null
     Copy-Item "$TmpDir\$file" ".\$file" -Force
 }
 
